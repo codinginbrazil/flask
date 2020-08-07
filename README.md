@@ -22,6 +22,12 @@ docker-compose -f "docker-compose.yml" up -d --build
 * Server
 > http://0.0.0.0:5000/
 
+
+##### docker remove image
+~~~bash
+docker rm -vf $(docker ps -a -q) \
+docker rmi -f $(docker images -a -q)
+~~~
 ##### Install requirements
 ~~~bash
 pip install -r requirements.txt

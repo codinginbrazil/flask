@@ -1,7 +1,7 @@
 from redis import Redis
-from flask import Flask
+from app import app
 
-app = Flask(__name__)
+
 redis = Redis(host='redis', port=6379)
 
 """ Sobrescreve função,
@@ -11,9 +11,5 @@ redis = Redis(host='redis', port=6379)
 
 @app.route("/")
 def index():
-    redis.incr('hits')
+    redis.incr("hits")
     return "Flask is Fun %s time(s)" % redis.get("hits")
-
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True)
