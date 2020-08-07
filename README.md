@@ -2,20 +2,28 @@
 
 
 #### [Requirements](https://github.com/codinginbrazil/flask/blob/master/requirements.txt)
-> Python version 3.8.3
-##### Virtualenv
+> Python version 3.8.5
+#### Docker
+~~~bash
+# Permissão para o usuário executar o docker.sock
+sudo cd /var/run && sudo chown wellington -R docker.sock
 ~~~
-python3 -m virtualenv vflask \
-source /vflask/bin/active \
-pip install flask \
-pip install --upgrade pip \
-pip freeze > requirements.txt
+
+##### Dockerfile
+~~~bash
+docker build --pull --rm -f "Dockerfile" -t image_name "."
 ~~~
-* VSCode
-> 'python.pythonPath': './bin/python3'
+
+##### Docker Compose
+~~~bash
+docker-compose -f "docker-compose.yml" up -d --build
+~~~
+
+* Server
+> http://0.0.0.0:5000/
 
 ##### Install requirements
-~~~
+~~~bash
 pip install -r requirements.txt
 ~~~
 
@@ -31,3 +39,9 @@ pip install -r requirements.txt
 
 ##### Conferência 
 * [FlaskConf - BR](https://www.youtube.com/channel/UCcjcRw_NjYJdW2ZaXsBiDqg/featured)
+
+##### Docker
+* [Docker Hub](https://hub.docker.com/_/python?tab=description) 
+* [Docker para desenvolvedores - Rafael Gomes](https://leanpub.com/dockerparadesenvolvedores)
+* [runnable.com](https://runnable.com/docker/python/docker-compose-with-flask-apps)
+* [rollout.io](https://rollout.io/blog/using-docker-compose-for-python-development/)
