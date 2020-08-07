@@ -1,5 +1,5 @@
-from redis import Redis
 from app import app
+from redis import Redis
 
 
 redis = Redis(host='redis', port=6379)
