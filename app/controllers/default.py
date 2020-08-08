@@ -1,5 +1,6 @@
 from app import app
 from redis import Redis
+from flask import render_template
 
 
 redis = Redis(host='redis', port=6379)
@@ -10,17 +11,30 @@ redis = Redis(host='redis', port=6379)
 
 
 @app.route("/")
-@app.route("/index")
 def index():
     redis.incr("hits")
-    return "Flask is Fun %s time(s)" % redis.get("hits")
+    return render_template('index.html')
+
+
+@app.route("/index/", defaults={'user': None})
+@app.route("/index/<user>")
+def user(user):
+    redis.incr("hits")
+    return render_template('index.html', user=user)
+
+
+@app.route("/login/", defaults={'user': None, 'password': None})
+@app.route("/login/<user>")
+def login(user):
+    redis.incr("hits")
+    return render_template('index.html', user=user)
 
 
 @app.route("/welcome", defaults={'name': None})
 @app.route("/welcome/<name>")
 def welcome(name):
-    if name :
+    redis.incr("hits")
+    if name:
         return "Welcome, %s" % name
     else:
-        return "Welcome!"
-
+        return "Welcome! %s time(s)" % redis.get("hits")
