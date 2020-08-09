@@ -1,6 +1,7 @@
-from app import app
 from redis import Redis
 from flask import render_template
+from app import app
+from app.models.forms import LoginForm
 
 
 redis = Redis(host='redis', port=6379)
@@ -23,11 +24,14 @@ def user(user):
     return render_template('index.html', user=user)
 
 
-@app.route("/login/", defaults={'user': None, 'password': None})
-@app.route("/login/<user>")
-def login(user):
+@app.route("/login", methods=["GET", "POST"])
+def login():
     redis.incr("hits")
-    return render_template('index.html', user=user)
+    form = LoginForm()
+    if form.validate_on_submit(): 
+        return "Welcome"
+    else: 
+        return render_template('login.html', form=form)
 
 
 @app.route("/welcome", defaults={'name': None})

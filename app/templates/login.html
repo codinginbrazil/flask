@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %} Login - {{ super() }} {% endblock %}
+
+{% block content %}
+    <div style="text-align: center;">
+        <h2> Log in</h2>
+        <br>
+        <form action="" method="POST">
+            {{ form.csrf_token }}
+            <label>Username:</label>
+            {{ form.username(placeholder="Your Phone, email, or username") }}
+            <br>
+
+            <label>Password:</label>
+            {{ form.password(placeholder="Your Password") }}
+            <!-- {% if form.errors.password %}
+                <div> 
+                    <h1> Erro </h1> {{form.errors.username}} </div>
+            {% endif %} -->
+            <br>
+
+            <label>
+                {{ form.remember_me }} 
+                Remember me
+            </label>
+            <br> <br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+{% endblock %}

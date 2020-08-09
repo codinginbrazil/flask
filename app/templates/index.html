@@ -1,11 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %} {{ super() }} - Home {% endblock %}
+{% block title %} Home - {{ super() }} {% endblock %}
 
 {% block content %}
 
 	<main>
-		<h1> Flask is Fun!  </h1>
 		{% if user %}
 			<h2>Seja bem-vindo {{user}} </h2>
 		{% endif %}
