@@ -47,10 +47,37 @@ def welcome(name):
         return "Welcome! %s time(s)" % redis.get("hits")
 
 
+# @app.route("/teste/<info>")
+# @app.route("/teste", defaults={"info": None})
+# def test(info):
+#     i = User("teste12", "1234", "Wellington", "teste12@gmail.com")
+#     db.session.add(i)
+#     db.session.commit()
+#     return "200" 
+
 @app.route("/teste/<info>")
 @app.route("/teste", defaults={"info": None})
 def test(info):
-    i = User("teste12", "1234", "Wellington", "teste12@gmail.com")
-    db.session.add(i)
-    db.session.commit()
-    return "200" 
+    """ CRUD: 
+        [Doc](https://flask-sqlalchemy.palletsprojects.com/en/2.x/queries)
+        * [Create](https://flask-sqlalchemy.palletsprojects.com/en/2.x/queries/#inserting-records)
+        * [Read](https://flask-sqlalchemy.palletsprojects.com/en/2.x/queries/#queries-in-views)
+        * [Update](https://flask-sqlalchemy.palletsprojects.com/en/2.x/queries/#querying-records)
+        * [Delete](https://flask-sqlalchemy.palletsprojects.com/en/2.x/queries/#deleting-records) 
+    """
+    # # Read: Selecting a bunch of users by a more complex expression 
+    r = User.query.filter_by(username="teste12").first()
+     
+
+    # r.name = "Wellington S"
+    # r.email = "wellington@wss.com"
+    # # Update    
+    # db.session.add(r)
+
+    # # Delete: Deleting records is very similar, instead of add() use delete():
+    # db.session.delete(r)
+
+    # db.session.commit()
+
+    print(r)
+    return "200"
