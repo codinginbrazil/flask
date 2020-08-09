@@ -1,4 +1,4 @@
-from app import app
+from app import db
 
 
 class User(db.Model):
@@ -25,9 +25,9 @@ class Post(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text)
-    user_id = db.Column(db.Integer, db.ForeingKey('users.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
-    user = db.relationship('User', foreing_keys=user_id)
+    user = db.relationship('User', foreign_keys=user_id)
 
     def __init__(self, content, user_id):
         self.content = content
@@ -41,8 +41,8 @@ class Follow(db.Model):
     __tablename__ = "follow"
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeingKey('users.id'))
-    follower_id = db.Column(db.Integer, db.ForeingKey('users.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    follower_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
-    user = db.relationship('User', foreing_keys=user_id)
-    user = db.relationship('User', foreing_keys=follower_id)
+    user = db.relationship('User', foreign_keys=user_id)
+    user = db.relationship('User', foreign_keys=follower_id)

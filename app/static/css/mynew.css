@@ -1,0 +1,17 @@
+:root {
+    --nc-tx-2: #1A1A1A;
+	--nc-lk-2: #0366D6;
+}
+
+footer {
+    text-align: center;
+}
+
+a { 
+    text-decoration: none;
+     color: var(--nc-tx-2);
+}
+
+a:hover {
+	color: var(--nc-lk-2);
+}

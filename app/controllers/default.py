@@ -1,7 +1,10 @@
 from redis import Redis
 from flask import render_template
-from app import app
+
+from app import app, db
+
 from app.models.forms import LoginForm
+from app.models.tables import User
 
 
 redis = Redis(host='redis', port=6379)
@@ -42,3 +45,12 @@ def welcome(name):
         return "Welcome, %s" % name
     else:
         return "Welcome! %s time(s)" % redis.get("hits")
+
+
+@app.route("/teste/<info>")
+@app.route("/teste", defaults={"info": None})
+def test(info):
+    i = User("teste12", "1234", "Wellington", "teste12@gmail.com")
+    db.session.add(i)
+    db.session.commit()
+    return "200" 

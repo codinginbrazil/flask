@@ -7,20 +7,34 @@
 
 	<meta name="author" content="github.com/sswellington" />
 	
-	<link rel="shortcut icon" href="/static/favicon.ico" />
-	<link rel="stylesheet" href="/static/css/new.css" />
+	<link rel="shortcut icon" href="{{url_for('static', filename='/favicon.ico')}}"/>
+	<link rel="stylesheet" href="{{url_for('static', filename='css/new.css')}}"/>
+	<link rel="stylesheet" href="{{url_for('static', filename='css/mynew.css')}}"/>
 	<title> {% block title %} Flask is Fun! {% endblock %} </title>
 </head>
 <body>
+	<style scoped>
+		a { text-decoration: none; color: black; }
+		a:hover {text-decoration: underline;}
+	</style>
+	<nav style="text-align: right;">
+		<a href="/">Home</a>  &nbsp
+		<a href="#">About</a> &nbsp
+		<a href="#">Contact</a> 
+	</nav>
 	<div>
-		<h1> Flask is Fun!  </h1>
+		<h1> <a href="/">Flask is Fun!</a>  </h1>
 	</div>
 	<hr>
 	{% block content %}
 	{% endblock %}
+	<br><br>
 	<hr>
-	<footer> 
-		<p style="text-align: center;"> Copyright © 2020 Coding in Brazil  </p>
+	<footer style="text-align: center;">  
+			Copyright © 2020 
+			<a href="https://github.com/codinginbrazil/flask" target="_blank">
+				Coding in Brazil
+			</a> 
 	</footer>
 </body>
 </html>
